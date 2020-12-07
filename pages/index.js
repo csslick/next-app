@@ -24,7 +24,7 @@ export default function Home() {
 
   useEffect(()=> {
     // mount, update
-    generate();
+    setList(generate());
   }, [])
 
   return (
@@ -35,16 +35,26 @@ export default function Home() {
       <Nav />
       <h1>Home</h1>
       <Number>
-        <h2>Style Component</h2>
+        <h2>Styled Component</h2>
       </Number>
 
       <section className="hero">
         {num.map((n, i) => {
-          return <span className='ball' key={i}> {n} </span>;
+          let color = '';
+          if(n <= 10) {
+            color = 'red';
+          } else if (n <= 20) { 
+            color = 'blue';
+          } else if (n <= 30) {
+            color = 'yellow'
+          } else {
+            color = 'black'
+          }
+          return <span className={color + ' ball'} key={i}> {n} </span>;
         })}
         <div className="mt-5">
           <button
-            onClick={()=> setList(generate())}
+            onClick={ ()=>setList(generate()) }
             className="btn btn-primary"
           >
             번호 생성
@@ -67,7 +77,12 @@ export default function Home() {
             margin: 5px;
             text-align: center;
             line-height: 50px;
+            color: #fff;
           }
+          .red { background: red;}
+          .blue { background: blue;}
+          .yellow { background: gold;}
+          .black { background: black;}
         `}
       </style>
     </>
